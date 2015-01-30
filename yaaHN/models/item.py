@@ -5,7 +5,7 @@ class Item(object):
 
     """item class for the yaaHN"""
 
-    def __init__(self, id, deleted, type, by, time, text, dead, parent, kids, url, score, title, parts):
+    def __init__(self, id=None, deleted=None, type=None, by=None, time=None, text=None, dead=None, parent=None, kids=None, url=None, score=None, title=None, parts=None):
         self.id = id
         self.deleted = deleted
         self.type = type

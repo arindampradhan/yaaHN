@@ -1,5 +1,5 @@
 """
-yaa it's a Hacker New api wrapper
+yaa yet another Hacker News api wrapper
 """
 
 __title__ = 'yaaHN'
