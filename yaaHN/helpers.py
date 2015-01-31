@@ -3,7 +3,7 @@ from .models.story import Story
 from .models.item import Item
 from .models.user import User
 from .models.poll import Poll
-from .models.updates import Update
+from .models.update import Update
 from thread_request import *
 import requests
 import urlparse
@@ -63,7 +63,8 @@ def poll_parser(poll):
     return Poll(
         poll['id'],
         poll['by'],
-        poll['kids'],
+        check_key('kids', poll),
+        check_key('parts', poll),
         poll['score'],
         poll['text'],
         poll['time'],

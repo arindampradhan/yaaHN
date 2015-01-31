@@ -48,18 +48,36 @@ class hn_client(object):
         #     story = self.get_story(id)
         #     story_objs.append(story)
         #     yield story
-        urls = []
+        story_urls = []
         for id in ids:
             url = API_BASE + "item/" + str(id) + '.json'
-            urls.append(url)
+            story_urls.append(url)
 
-        urls = urls[:limit]
+        story_urls = story_urls[:limit]
 
-        response_queue = fetch_parallel(urls)
+        response_queue = fetch_parallel(story_urls)
         list_response = []
 
         while not response_queue.empty():
             yield story_parser(response_queue.get())
+        #     list_response.append(a)
+        # yield list_response
+
+    @classmethod
+    def get_comments(self, story_id, limit=5):
+        response = request_item(story_id)
+        comments = response['kids']
+        comments = comments[:limit]
+        comments_url = []
+        for id in ids:
+            url = API_BASE + "item/" + str(id) + '.json'
+            comments_url.append(url)
+
+        response_queue = fetch_parallel(comments_url)
+        list_response = []
+
+        while not response_queue.empty():
+            yield comment_parser(response_queue.get())
         #     list_response.append(a)
         # yield list_response
 
