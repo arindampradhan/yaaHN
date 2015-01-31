@@ -4,7 +4,7 @@
 class Item(object):
 
     """item class for the yaaHN"""
-
+    # loose instant of Item class as it varies often according to story,comment,poll,user
     def __init__(self, id=None, deleted=None, type=None, by=None, time=None, text=None, dead=None, parent=None, kids=None, url=None, score=None, title=None, parts=None):
         self.id = id
         self.deleted = deleted
@@ -21,4 +21,4 @@ class Item(object):
         self.parts = parts
 
     def __repr__(self):
-        return "<Comment: ID={}>".format(self.id)
+        return "<Item: ID={}>".format(self.id)

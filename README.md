@@ -1,12 +1,14 @@
 yaaHN
 =====
 
-Yaa it's just a python wrapper for the [firebase hacker news api](https://github.com/HackerNews/API)
+Yaa it's just a python wrapper for the official [firebase hacker news api](https://github.com/HackerNews/API)
 
 
 ##Item
 
-The item has following properties
+### ``Poll``, ``Comment`` , ``Story`` are items themselves.(Not inherited but as a subclass)
+
+**properties**
 
 Field | Description
 ------|------------
@@ -27,6 +29,8 @@ parts | A list of related pollopts, in display order.
 
 ##User
 
+**properties**
+
 Field | Description
 ------|------------
 id | The user's unique username. Case-sensitive. Required.
@@ -37,4 +41,118 @@ about | The user's optional self-description. HTML.
 submitted | List of the user's stories, polls and comments.
 
 
-##Client for hacker New
+## Client for hacker New
+
+
+### To get an item **``get_comments``**
+
+
+#### Parameters:
+
+Name | Type | Required | Description | Default
+------|---------------------------------------
+comment_id | int | Yes | The id of the item that has comments kid | None
+limit | int | No | limit Number of comments to return | 5
+json | bool | No | If yes returns the json result | False
+
+#### Examples
+
+    from yaaHN import hn_client
+    hn_client.get_comments(6374031)
+
+    [<Comment: ID=6375861>,
+     <Comment: ID=6374318>,
+     <Comment: ID=6376142>,
+     <Comment: ID=6374429>,
+     <Comment: ID=6374292>,
+     <Comment: ID=6374678>,
+     <Comment: ID=6374547>]
+
+This method uses **gevent requests** 
+
+### To get top 100 stories objects **``top_stories``**
+
+#### Yields the top stories object
+
+
+#### Parameters:
+
+Name | Type | Required | Description | Default
+------|---------------------------------------
+limit | int | No | limit Number of comments to return | 5
+first | int | No | set range from top stories ids | None
+limit | int | No | set range from top stories ids | None
+json | bool | No | If yes returns the json result | False
+
+
+#### Examples
+
+    from yaaHN import hn_client
+    for r in hn_client.top_stories(30):
+        print "%s  -  %s" %(r.id , r.title) 
+        print 
+
+This method uses **gevent requests**
+
+
+### To get a user **``get_user``**
+
+Returns an User object
+
+    from yaaHN import hn_client
+    hn_client.get_user('joe')
+
+    <User: ID=joe>
+
+### To get an item **``get_item``**
+
+Returns an Item object
+
+    from yaaHN import hn_client
+    hn_client.get_item(1)
+
+    <Item: ID=1>
+
+**Note:** This item object accepts any type of item and can be used as a dummy object, for unrelaible exceptions due to async requests.(Usage in top_stories)
+
+### To get following items **``get_poll``** , **``get_comment``**,**``get_story``** .
+
+    from yaaHN import hn_client
+    hn_client.get_item(8863)
+    hn_client.get_story(879)
+    hn_client.get_comment(2921983)
+
+Poll, Story, Comment are subclass (not inherited) of item class . They all have some(not all) of the properties of the item class.
+
+### To get top 100 stories id **``top_stories_ids``**
+
+#### Returns the list of ids from top stories ( No parameter needed)
+
+#### Examples
+
+    from yaaHN import hn_client
+    hn_client.top_stories_ids()
+
+    [8976489,8976451,8976690,8976611,8974024,8973283, ... 
+
+### To get the maximum object **``get_max_item``**
+
+#### Returns the **max item id**
+
+#### Examples
+
+
+    from yaaHN import hn_client
+    hn_client.get_max_item()
+
+### To get updates object **``updates``**
+
+
+#### Examples
+    
+    from yaaHN import hn_client
+    hn_client.updates()
+
+    items updated : 10
+
+    a = hn_client.updates()

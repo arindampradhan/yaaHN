@@ -16,4 +16,4 @@ class Story(object):
         self.url = url
 
     def __repr__(self):
-        return "<Comment: ID={}>".format(self.id)
+        return "<Story: ID={}>".format(self.id)

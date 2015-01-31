@@ -14,4 +14,4 @@ class User(object):
         self.submitted = submitted
 
     def __repr__(self):
-        return "<Comment: ID={}>".format(self.id)
+        return "<User: ID={}>".format(self.id)

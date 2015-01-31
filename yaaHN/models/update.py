@@ -10,4 +10,4 @@ class Update(object):
         self.profiles = profiles
 
     def __repr__(self):
-        return "items updated : {0}".format(len(items))
+        return "items updated : {0}".format(len(self.items))

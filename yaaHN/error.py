@@ -1,6 +1,6 @@
 class HackerNewsError(object):
 
-    """docstring for HackerNewsError"""
+    """Object for the error or null response"""
 
     def __init__(self, error_message, status_code=None):
         self.status_code = status_code

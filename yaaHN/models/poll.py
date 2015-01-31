@@ -17,4 +17,4 @@ class Poll(object):
         self.type = type
 
     def __repr__(self):
-        return "<Comment: ID={}>".format(self.id)
+        return "<Poll: ID={}>".format(self.id)
