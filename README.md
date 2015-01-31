@@ -1,12 +1,9 @@
-yaaHN
-=====
 
-Yaa it's just a python wrapper for the official [firebase hacker news api](https://github.com/HackerNews/API)
+![yaaHN API](https://github.com/arindampradhan/yaaHN/blob/master/hn.png)
 
+Yaa it's just a python wrapper for the official [firebase hacker news api](https://github.com/HackerNews/API).
 
 ##Item
-
-### ``Poll``, ``Comment`` , ``Story`` are items themselves.(Not inherited but as a subclass)
 
 **properties**
 
@@ -26,6 +23,9 @@ score | The story's score, or the votes for a pollopt.
 title | The title of the story or poll.
 parts | A list of related pollopts, in display order.
 
+### ``Poll``, ``Comment`` , ``Story`` 
+
+These are items themselves.(Not inherited but subclass )
 
 ##User
 
@@ -41,19 +41,20 @@ about | The user's optional self-description. HTML.
 submitted | List of the user's stories, polls and comments.
 
 
-## Client for hacker New
+## **Client** for hacker New
 
 
-### To get an item **``get_comments``**
+### **``get_comments``**
 
+#### Get an comment object
 
 #### Parameters:
 
 Name | Type | Required | Description | Default
-------|---------------------------------------
+-----|------|----------|-------------|----------
 comment_id | int | Yes | The id of the item that has comments kid | None
-limit | int | No | limit Number of comments to return | 5
-json | bool | No | If yes returns the json result | False
+limit      | int | No  | limit Number of comments to return | 5
+json       | bool | No | If yes returns the json result     | False
 
 #### Examples
 
@@ -70,15 +71,15 @@ json | bool | No | If yes returns the json result | False
 
 This method uses **gevent requests** 
 
-### To get top 100 stories objects **``top_stories``**
+### **``top_stories``**
 
-#### Yields the top stories object
+#### Yields top 100 stories objects
 
 
 #### Parameters:
 
-Name | Type | Required | Description | Default
-------|---------------------------------------
+Name  | Type | Required | Description | Default
+------|------|----------|-------------|---------
 limit | int | No | limit Number of comments to return | 5
 first | int | No | set range from top stories ids | None
 limit | int | No | set range from top stories ids | None
@@ -95,18 +96,18 @@ json | bool | No | If yes returns the json result | False
 This method uses **gevent requests**
 
 
-### To get a user **``get_user``**
+### **``get_user``**
 
-Returns an User object
+Returns an **User object**
 
     from yaaHN import hn_client
     hn_client.get_user('joe')
 
     <User: ID=joe>
 
-### To get an item **``get_item``**
+### **``get_item``**
 
-Returns an Item object
+Returns an **Item object**
 
     from yaaHN import hn_client
     hn_client.get_item(1)
@@ -115,7 +116,7 @@ Returns an Item object
 
 **Note:** This item object accepts any type of item and can be used as a dummy object, for unrelaible exceptions due to async requests.(Usage in top_stories)
 
-### To get following items **``get_poll``** , **``get_comment``**,**``get_story``** .
+### **``get_poll``** , **``get_comment``**,**``get_story``** .
 
     from yaaHN import hn_client
     hn_client.get_item(8863)
@@ -124,7 +125,7 @@ Returns an Item object
 
 Poll, Story, Comment are subclass (not inherited) of item class . They all have some(not all) of the properties of the item class.
 
-### To get top 100 stories id **``top_stories_ids``**
+###  **``top_stories_ids``**
 
 #### Returns the list of ids from top stories ( No parameter needed)
 
@@ -135,18 +136,18 @@ Poll, Story, Comment are subclass (not inherited) of item class . They all have 
 
     [8976489,8976451,8976690,8976611,8974024,8973283, ... 
 
-### To get the maximum object **``get_max_item``**
+### **``get_max_item``**
 
-#### Returns the **max item id**
+Returns the **max item id**
 
 #### Examples
-
 
     from yaaHN import hn_client
     hn_client.get_max_item()
 
-### To get updates object **``updates``**
+###  **``updates``**
 
+Get the **updates object**
 
 #### Examples
     
