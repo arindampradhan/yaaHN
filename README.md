@@ -3,56 +3,38 @@
 
 Yaa it's just a python wrapper for the official [firebase hacker news api](https://github.com/HackerNews/API).
 
-##Item
 
-**properties**
+## Install
 
-Field | Description
-------|------------
-id | The item's unique id. Required.
-deleted | `true` if the item is deleted.
-type | The type of item. One of "job", "story", "comment", "poll", or "pollopt".
-by | The username of the item's author.
-time | Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time).
-text | The comment, Ask HN, or poll text. HTML.
-dead | `true` if the item is dead.
-parent | The item's parent. For comments, either another comment or the relevant story. For pollopts, the relevant poll.
-kids | The ids of the item's comments, in ranked display order.
-url | The URL of the story.
-score | The story's score, or the votes for a pollopt.
-title | The title of the story or poll.
-parts | A list of related pollopts, in display order.
+    python setup.py install
 
-### ``Poll``, ``Comment`` , ``Story`` 
+    or 
 
-These are items themselves.(Not inherited but subclass )
+    pip install yaaHN
 
-##User
 
-**properties**
+## Reatures:
 
-Field | Description
-------|------------
-id | The user's unique username. Case-sensitive. Required.
-delay | Delay in minutes between a comment's creation and its visibility to other users.
-created | Creation date of the user, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time).
-karma | The user's karma.
-about | The user's optional self-description. HTML.
-submitted | List of the user's stories, polls and comments.
-
+* No oauth required, use a simple client.
+* Async requests (uses gevent) 
+* Fetch comments, stories, poll, user data and lot more. 
+* Comments easily support support pagination and comment kids.
+* Hook them to your **django** and **flask** using models api.
+* Easily initialize to your database from the api sql or nosql.
+* Most objects have a simple schema for json and xml.
 
 ## **Client** for hacker New
 
 
 ### **``get_comments``**
 
-#### Get an comment object
+#### Get all comment objects
 
 #### Parameters:
 
 Name | Type | Required | Description | Default
 -----|------|----------|-------------|----------
-comment_id | int | Yes | The id of the item that has comments kid | None
+item_id | int | Yes | The id of the item (story id or comment id) that has comments kid | None
 limit      | int | No  | limit Number of comments to return | 5
 json       | bool | No | If yes returns the json result     | False
 
@@ -81,12 +63,14 @@ This method uses **gevent requests**
 Name  | Type | Required | Description | Default
 ------|------|----------|-------------|---------
 limit | int | No | limit Number of comments to return | 5
-first | int | No | set range from top stories ids | None
-limit | int | No | set range from top stories ids | None
+first | int | No | set first range from top stories ids | None
+last | int | No | set last range from top stories ids | None
 json | bool | No | If yes returns the json result | False
 
 
 #### Examples
+
+This is a generator object
 
     from yaaHN import hn_client
     for r in hn_client.top_stories(30):
@@ -157,3 +141,77 @@ Get the **updates object**
     items updated : 10
 
     a = hn_client.updates()
+
+## **``models``** for yaaHN
+
+##Item
+
+**properties**
+
+Field | Description
+------|------------
+id | The item's unique id. Required.
+deleted | `true` if the item is deleted.
+type | The type of item. One of "job", "story", "comment", "poll", or "pollopt".
+by | The username of the item's author.
+time | Creation date of the item, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time).
+text | The comment, Ask HN, or poll text. HTML.
+dead | `true` if the item is dead.
+parent | The item's parent. For comments, either another comment or the relevant story. For pollopts, the relevant poll.
+kids | The ids of the item's comments, in ranked display order.
+url | The URL of the story.
+score | The story's score, or the votes for a pollopt.
+title | The title of the story or poll.
+parts | A list of related pollopts, in display order.
+
+### ``Poll``, ``Comment`` , ``Story`` 
+
+These are items themselves.(Not inherited but subclass )
+
+##User
+
+**properties**
+
+Field | Description
+------|------------
+id | The user's unique username. Case-sensitive. Required.
+delay | Delay in minutes between a comment's creation and its visibility to other users.
+created | Creation date of the user, in [Unix Time](http://en.wikipedia.org/wiki/Unix_time).
+karma | The user's karma.
+about | The user's optional self-description. HTML.
+submitted | List of the user's stories, polls and comments.
+
+
+### **``types``**
+* - **models.comment** - get the comment model
+* - **models.item** - get the item model
+* - **models.story** - get the story model
+* - **models.user** - get the user model
+* - **models.deleted** - get the deleted model 
+* - **models.poll** - get the poll model
+* - **models.update** - get the update model
+
+
+#### **``models.comment``**
+
+**``__init__(self, id, by, kids, parent, text, time, type)``**
+
+#### **``models.deleted``**
+
+**``__init__(self, id, deleted)``**
+
+#### **``models.story``**
+
+**``__init__(self, id, by, kids, score, time, title, type, url)``**
+
+#### **``models.poll``**
+
+**``__init__(self, id, by, kids, parts, score, text, time, title, type)``**
+
+#### **``models.update``**
+
+**``__init__(self, items, profiles)``**
+
+#### **``models.user``**
+
+**``__init__(self, id, delay, created, karma, about, submitted)``**
