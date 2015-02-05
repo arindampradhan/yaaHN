@@ -14,12 +14,12 @@ setup(
     # http://packaging.python.org/en/latest/tutorial.html#version
     version='0.1',
 
-    description='Hacker News wrapper for offical Hacker News',
+    description='API wrapper for offical Hacker News',
     long_description='Client library with basic read only functionality provided by firebase hacker news api',
 
     # The project's main homepage.
     url='https://github.com/arindampradhan/yaaHN',
-
+    download_url='https://github.com/arindampradhan/yaaHN/tarball/v0.1',
     # Author details
     author='Arindam Pradhan',
 
@@ -59,7 +59,7 @@ setup(
     # project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/technical.html#install-requires-vs-requirements-files
-    install_requires=['requests','grequests'],
+    install_requires=['requests', 'grequests'],
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these

@@ -46,7 +46,7 @@ class TestItem(unittest.TestCase):
         assert type(self.kids) == int or None
         assert type(self.url) in text_type or None
         assert type(self.score) in text_type or None
-        assert type(self.title) == in text_type or None
+        assert type(self.title) in text_type or None
         assert type(self.parts) == list or None
 
     def test_item_by(self):
