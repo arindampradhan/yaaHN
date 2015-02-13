@@ -10,7 +10,7 @@ Yaa it's just a python wrapper for the official [firebase hacker news api](https
 
     or 
 
-    pip install yaaHN
+    pip install git+https://github.com/arindampradhan/yaaHN.git
 
 
 ## Reatures:
