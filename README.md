@@ -13,7 +13,7 @@ Yaa it's just a python wrapper for the official [firebase hacker news api](https
     pip install git+https://github.com/arindampradhan/yaaHN.git
 
 
-## Reatures:
+## Features:
 
 * No oauth required, use a simple client.
 * Async requests (uses gevent) 
