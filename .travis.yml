@@ -1,16 +1,12 @@
 language: python
 
 python:
-  - "3.3"
   - "2.7"
   - "2.6"
 
-env:
-    - DEPS=true
-    - DEPS=false
 
 install:
-  - pip install .
-  - pip install -r requirements.txt
+  - python setup.py develop
+  - pip install -r ./tests/requirements.txt
 
-script: "./run-tests.sh"
+script: ./run-tests.sh
