@@ -2,7 +2,8 @@ import httpretty
 import unittest
 from os import path
 import sys
-
+import requests
+import types
 from yaaHN.models import comment
 from yaaHN import hn_client
 from yaaHN.helpers import comment_parser, API_BASE
@@ -16,7 +17,7 @@ class TestComment(unittest.TestCase):
         httpretty.register_uri(
             httpretty.GET, '{0}{1}'.format(API_BASE,
                                            'item/2921983.json'),
-            body=get_content('story_2921983.json'), status=200, content_type='text/json')
+            body=get_content('comment_2921983.json'), status=200, content_type='text/json')
         response = requests.get(
             'https://hacker-news.firebaseio.com/v0/item/2921983.json')
 
@@ -40,9 +41,9 @@ class TestComment(unittest.TestCase):
         assert type(self.comment.parent) == int
         assert type(self.comment.kids) == list
         assert type(self.comment.time) == int
-        assert type(self.comment.type) in self.text_type
-        assert type(self.comment.text) in self.text_type
-        assert type(self.comment.by) in self.text_type
+        assert type(self.comment.type) == types.UnicodeType
+        assert type(self.comment.text) == types.UnicodeType
+        assert type(self.comment.by) == types.UnicodeType
 
     def test_story_by(self):
         """

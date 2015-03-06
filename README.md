@@ -144,6 +144,17 @@ Get the **updates object**
 
 ## **``models``** for yaaHN
 
+
+##Tests
+
+To run the tests locally
+
+    $ ./run-tests.sh
+
+To run individual test
+
+    $ python -m unittest tests.<module name>
+
 ##Item
 
 **properties**
@@ -194,24 +205,24 @@ submitted | List of the user's stories, polls and comments.
 
 #### **``models.comment``**
 
-**``__init__(self, id, by, kids, parent, text, time, type)``**
+**``attributes -  id, by, kids, parent, text, time, type``**
 
 #### **``models.deleted``**
 
-**``__init__(self, id, deleted)``**
+**``attributes - id, deleted``**
 
 #### **``models.story``**
 
-**``__init__(self, id, by, kids, score, time, title, type, url)``**
+**``attributes - id, by, kids, score, time, title, type, url``**
 
 #### **``models.poll``**
 
-**``__init__(self, id, by, kids, parts, score, text, time, title, type)``**
+**``attributes - id, by, kids, parts, score, text, time, title, type ``**
 
 #### **``models.update``**
 
-**``__init__(self, items, profiles)``**
+**``attributes - items, profiles``**
 
 #### **``models.user``**
 
-**``__init__(self, id, delay, created, karma, about, submitted)``**
+**``attributes - id, delay, created, karma, about, submitted``**

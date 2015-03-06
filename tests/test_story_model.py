@@ -1,8 +1,9 @@
 import httpretty
 import unittest
 from os import path
+import types
 import sys
-
+import requests
 from yaaHN.models import story
 from yaaHN import hn_client
 from yaaHN.helpers import story_parser, API_BASE
@@ -18,13 +19,8 @@ class TestStory(unittest.TestCase):
                                            'item/879.json'),
             body=get_content('story_879.json'), status=200, content_type='text/json')
         response = requests.get(
-            'https://hacker-news.firebaseio.com/v0/item/879.json')
+            'https://hacker-news.firebaseio.com/v0/item/879.json').json()
 
-        self.PY2 = sys.version_info[0] == 0
-        if not self.PY2:
-            self.text_type = [str]
-        else:
-            self.text_type = [unicode, str]
         self.story = hn_client.get_story('879')
 
     def tearDown(self):
@@ -34,14 +30,13 @@ class TestStory(unittest.TestCase):
         """
         Test types of fields of a Story object
         """
-
         assert self.story.type == "story"
         assert type(self.story.id) == int
         assert type(self.story.score) == int
         assert type(self.story.time) == int
-        assert type(self.story.type) in self.text_type
-        assert type(self.story.title) in self.text_type
-        assert type(self.story.by) in self.text_type
+        assert type(self.story.type) == types.UnicodeType
+        assert type(self.story.title) == types.UnicodeType
+        assert type(self.story.by) == types.UnicodeType
 
     def test_story_by(self):
         """

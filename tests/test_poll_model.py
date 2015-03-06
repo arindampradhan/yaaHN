@@ -2,7 +2,8 @@ import httpretty
 import unittest
 import requests
 import sys
-
+import requests
+import types
 from os import path
 from yaaHN.models import poll
 from yaaHN import hn_client
@@ -27,7 +28,7 @@ class TestPoll(unittest.TestCase):
             self.text_type = [str]
         else:
             self.text_type = [unicode, str]
-        self.pool_type = ['poll', 'pollopt']
+        self.poll_type = ['poll', 'pollopt']
         self.poll = hn_client.get_poll('126809')
 
     def tearDown(self):
@@ -43,10 +44,10 @@ class TestPoll(unittest.TestCase):
         assert type(self.poll.time) == int
         assert type(self.poll.kids) == list
         assert type(self.poll.parts) == list
-        assert type(self.poll.type) in self.pool_type
-        assert type(self.poll.title) in self.text_type
-        assert type(self.poll.by) in self.text_type
-        assert type(self.poll.text) in self.text_type
+        assert self.poll.type in self.poll_type
+        assert type(self.poll.title) == types.UnicodeType
+        assert type(self.poll.by) == types.UnicodeType
+        assert type(self.poll.text) == types.UnicodeType
 
     def test_poll_by(self):
         """

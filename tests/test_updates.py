@@ -25,13 +25,27 @@ class TestUpdate(unittest.TestCase):
 
     def test_item_len(self):
         value = 10
-        result = update.items
+        result = self.update.items
         self.assertEqual(len(result), value)
 
-    def test_item_len(self):
+    def test_profile_len(self):
         value = 10
-        result = update.profiles
+        result = self.update.profiles
         self.assertEqual(len(result), value)
+
+    def test_profile_name(self):
+        """
+        Tests one profile name
+        """
+        result = self.update.profiles[0]
+        self.assertEqual(result, 'enqk')
+
+    def test_item_id(self):
+        """
+        Tests one id in the list
+        """
+        result = self.update.items[0]
+        self.assertEqual(result, 8975429)
 
 if __name__ == '__main__':
     unittest.main()
