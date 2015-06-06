@@ -16,7 +16,7 @@ setup(
     url='https://github.com/arindampradhan/yaaHN',
     download_url='https://github.com/arindampradhan/yaaHN/tarball/v0.1',
     author='Arindam Pradhan',
-    test_suite='tests'
+    test_suite='tests',
     license='MIT',
 
     classifiers=[
