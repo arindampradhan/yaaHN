@@ -17,6 +17,7 @@ setup(
     url='https://github.com/arindampradhan/yaaHN',
     download_url='https://github.com/arindampradhan/yaaHN/tarball/v0.1',
     author='Arindam Pradhan',
+    author_email="arindampradhan10@gmail.com",
     test_suite='tests',
     license='MIT',
 
