@@ -10,7 +10,7 @@ Yaa it's just a python wrapper for the official [firebase hacker news api](https
 
     or 
 
-    pip install git+https://github.com/arindampradhan/yaaHN.git
+    pip install yaaHN
 
 
 ## Features:
@@ -201,28 +201,3 @@ submitted | List of the user's stories, polls and comments.
 * - **models.deleted** - get the deleted model 
 * - **models.poll** - get the poll model
 * - **models.update** - get the update model
-
-
-#### **``models.comment``**
-
-**``attributes -  id, by, kids, parent, text, time, type``**
-
-#### **``models.deleted``**
-
-**``attributes - id, deleted``**
-
-#### **``models.story``**
-
-**``attributes - id, by, kids, score, time, title, type, url``**
-
-#### **``models.poll``**
-
-**``attributes - id, by, kids, parts, score, text, time, title, type ``**
-
-#### **``models.update``**
-
-**``attributes - items, profiles``**
-
-#### **``models.user``**
-
-**``attributes - id, delay, created, karma, about, submitted``**

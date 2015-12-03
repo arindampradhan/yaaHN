@@ -10,9 +10,10 @@ here = path.abspath(path.dirname(__file__))
 # Get the long description from the relevant file
 setup(
     name='yaaHN',
-    version='0.1',
-    description='API wrapper for offical Hacker News',
-    long_description='Client library with basic read only functionality provided by firebase hacker news api',
+    version='0.1.1',
+    description='Yet another API wrapper for offical Hacker News',
+    long_description=open('README.md').read(),
+    package_data={'': ['LICENSE.md']},
     url='https://github.com/arindampradhan/yaaHN',
     download_url='https://github.com/arindampradhan/yaaHN/tarball/v0.1',
     author='Arindam Pradhan',
@@ -36,8 +37,7 @@ setup(
 
     keywords=['api', 'hacker news', 'news', 'stories'],
     packages=find_packages(),
-    install_requires=['requests', 'grequests'],
-    package_data={},
+    install_requires=['requests==2.5.3', 'grequests'],
     data_files=[],
     entry_points={},
 )
