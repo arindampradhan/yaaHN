@@ -38,7 +38,7 @@ setup(
 
     keywords=['api', 'hacker news', 'news', 'stories'],
     packages=find_packages(),
-    install_requires=['requests==2.5.3', 'grequests'],
+    install_requires=['requests==2.20.0', 'grequests'],
     data_files=[],
     entry_points={},
 )
